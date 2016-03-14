@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="Shortcut Icon" href="http://static.youku.com/v1.0.1024/index/img/favicon.ico">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <title>{{game.fullname}}-优酷{{game.fullname}}官方网站-{{game.fullname}}选区|{{game.fullname}}攻略|{{game.fullname}}开服表-优酷游戏</title>
+        <meta content="{{game.fullname}},{{game.fullname}}官网,优酷{{game.fullname}},{{game.fullname}}攻略,{{game.fullname}}新手卡" name="keywords" />
+        <meta name="description" content="优酷游戏中心是国内最好玩的免费安全游戏平台,为亿万优酷玩家提供各种最新最好玩的免费游戏,优酷游戏是优酷土豆旗下网页游戏,移动游戏,网络游戏,跨平台多端网络游戏运营发行平台,为亿万网民提供最贴心便捷的游戏娱乐服务,使用优酷账号可快速登录优酷游戏各种精品游戏,还能独享优酷游戏为您准备的专属特权服务,使用积分、金券,优惠券享受各种游戏礼品!玩游戏,就选优酷,一起来吧！">
+        <meta name="renderer" content="webkit">
+        <link rel="stylesheet" href="{{static_url('css/signin.css')}}"/>
+        <script type="text/javascript">
+            var logPageStartTime = (new Date()).getTime();//毫秒
+            window.GAME_CONFIG = {
+                user_info_show : false,
+                check_user_info_need_verify : false,
+                qheader_show : false
+            };
+            window.game_login_from = "wg-tg";
+
+            //各个页面自行实现
+            var gameLoginUpdateStatus = function(){
+                //重写时都得写这个
+                setLoginIdentifyCookie();
+            }
+
+            window["update_login_status_hook_game_page_logined"] = function(){
+                gameLoginUpdateStatus();
+            };
+
+            window.bgType = "{{gameActivity.background_type}}";
+            window.swf_show = 1;
+            var enableFlashClick = true;
+        </script>
+        <script type='text/javascript'>
+            //广告DSP统计
+            window._CWiQ = window._CWiQ || [];
+            window.BX_CLIENT_ID = 35188; // 帐号ID
+            (function() {
+            var c = document.createElement('script')
+            ,p = 'https:'==document.location.protocol;
+            c.type = 'text/javascript';
+            c.async = true;
+            c.src = (p?'https://':'http://')+'land.dsp.youku.com/boot/0';
+            var h = document.getElementsByTagName('script')[0];
+            h.parentNode.insertBefore(c, h);
+            })();
+        </script>
+        <style>
+            body{
+                background: #000;
+            }
+            .wg_username_a{
+                text-decoration: none;
+            }
+            .wg_username_a:hover{
+                color:#CC5900;
+            }
+            .wg_username_a:visited{
+                color:#3399e0;
+            }
+            .main_bg{
+             {% if gameActivity.background_type == "image" %}
+                background:url({{gameActivity.background_logo}}) no-repeat scroll center 0 #000;
+             {% else %}
+                background:#000;
+             {% end %}
+            }
+            .main #reg_box{
+                position:relative ;
+     /**           width: 605px;
+	            height: 473px;
+	   修改初始化大小，适应弹出正式登陆框的情况**/
+                width:450px;
+                height:404px;
+                overflow: hidden;
+                margin: 0 auto;
+                text-align:center;
+                /**background:#fff;**/
+                z-index: 100;
+                top: {{gameActivity.login_pos_y}}px;
+                left: {{gameActivity.login_pos_x}}px;
+            }
+            #account{
+                position:relative;
+                width:544px;
+                height:430px;
+                overfloat:hidden;
+                z-index:100;
+                margin: 0 auto;
+                left:{{gameActivity.login_pos_x}}px;
+                top:{{gameActivity.login_pos_y}}px;
+                background:{{gameActivity.login_color}};
+            }
+            .active-info{
+                position: absolute;
+                left: {{gameActivity.html_pos_x}}px;;
+                top:{{gameActivity.html_pos_y}}px;
+                z-index: 1200;
+            }
+        </style>
+        <script type="text/javascript" src="http://static.youku.com/v/js/jquery.min.js"></script>
+        <script type="text/javascript" src="{{static_url('js/jquery.jsonp.js')}}"></script>
+    </head>
+    <body>
+
+        <div class="main main_bg" id="main_box" rpt-area="tg-bg">
+            {% if gameActivity.background_type == "swf" %}
+{#           <embed src="{{gameActivity.background_logo}}" wmode=transparent style="position: absolute" width="100%" height="100%">#}
+            <object id="swfbg" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"  rpt-data="flash" width="100%" style="position: absolute;z-index:1" height="100%"
+                codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0">
+                <param name="movie" value="{{gameActivity.background_logo}}">
+                <param name="quality" value="high">
+                <param name="bgcolor" value="#000">
+                <param name="menu" value="false">
+                <param name="wmode" value="Transparent"><!--Window|Opaque|Transparent-->
+                <param name="FlashVars" value="">
+                <param name="allowScriptAccess" value="always">
+                <embed id="swfbgem" style="position: absolute" src="{{gameActivity.background_logo}}"
+                    width="100%"
+                    height="100%"
+                    quality="high"
+                    bgcolor="#000" wmode=transparent
+                    menu="false"
+                    play="true"
+                    loop="false"
+                    FlashVars=""
+                    allowScriptAccess="always"
+                    type="application/x-shockwave-flash"
+                    pluginspage="http://www.adobe.com/go/getflashplayer">
+                </embed>
+            </object>
+            {% end %}
+
+            <div id="reg_box" style="display:none;">
+                <!--<iframe src="http://login.youku.com/user/login_win" scrolling="no"></iframe>-->
+            </div>
+            <div id="account" style="display:none;" rpt-area="tg-servers">
+                <div class="inner">
+                    <div class="title">
+                        <ul>
+                            <li class="a1" id="user_name"></li>
+                            <li class="a2"><a href="#" id="change_user" rpt-data="exit">[退出账号]</a></li>
+                        </ul>
+                    </div>
+                    <div class="line"></div>
+                    <div class="logined_server">
+                        <p>最近登陆过的服务器</p>
+                        <ul id="servers">
+                        </ul>
+                    </div>
+                    <div class="hot_server">
+                        <p>推荐服务器</p>
+                        <ul id="newserver">
+                        </ul>
+                    </div>
+                    <!--<p class="more"><a href="#">查看更多</a></p>-->
+                </div>
+            </div>
+
+        </div>
+            <div class="active-info">
+                {% raw gameActivity.html %}
+            </div>
+        <script src="{{static_url('js/youku/qwindow.js')}}"></script>
+        <script type="text/javascript">
+            var gameGkey = "{{game.gkey}}";
+            var left = $("body").width()/2+$('.active-info').position().left;
+            $('.active-info').css("left",left+"px");
+            //设置登录关联信息
+            window.getRelationInfo = function(){
+                return {gkey:"{{ game.gkey }}"};
+            }
+        </script>
+        <script type="text/javascript" src="{{static_url('js/newbase.js')}}"></script>
+        <script type="text/javascript" src="{{static_url('js/report.js')}}"></script>
+        <script type="text/javascript" src="{{static_url('js/signin.js')}}"></script>
+        <script type="text/javascript" src="{{static_url('js/youku_report.js')}}"></script>
+    </body>
+</html>
